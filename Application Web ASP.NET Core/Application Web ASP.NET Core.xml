@@ -4,5 +4,46 @@
         <name>Application Web ASP.NET Core</name>
     </assembly>
     <members>
+        <member name="M:Application_Web_ASP.NET_Core.Controllers.ComptesController.#ctor(Application_Web_ASP.NET_Core.Models.EntityFramework.FilmsDBContext)">
+            <summary>
+            Constructeur pour l'injection de dependance
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Application_Web_ASP.NET_Core.Controllers.ComptesController.GetCompte">
+            <summary>
+            Retourne la liste de tout les comptes en bdd
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Application_Web_ASP.NET_Core.Controllers.ComptesController.GetCompteById(System.Int32)">
+            <summary>
+            retourne le compte correspondant à l'id en parametre
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Application_Web_ASP.NET_Core.Controllers.ComptesController.GetCompteByEmail(System.String)">
+            <summary>
+            retorune le compte correspondant au mail en parametre
+            </summary>
+            <param name="email"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Application_Web_ASP.NET_Core.Controllers.ComptesController.PutCompte(System.Int32,Application_Web_ASP.NET_Core.Models.EntityFramework.Compte)">
+            <summary>
+            Met à jour le compte correspondant à l'id avec les info passé dans l'object compte en parametre
+            </summary>
+            <param name="id"></param>
+            <param name="compte"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Application_Web_ASP.NET_Core.Controllers.ComptesController.PostCompte(Application_Web_ASP.NET_Core.Models.EntityFramework.Compte)">
+            <summary>
+            Insere l'objet compte en parametre dans la bdd
+            </summary>
+            <param name="compte"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

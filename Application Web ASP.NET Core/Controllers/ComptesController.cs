@@ -15,6 +15,10 @@ namespace Application_Web_ASP.NET_Core.Controllers
     {
         private readonly FilmsDBContext _context;
 
+        /// <summary>
+        /// Constructeur pour l'injection de dependance
+        /// </summary>
+        /// <param name="context"></param>
         public ComptesController(FilmsDBContext context)
         {
             _context = context;
@@ -60,7 +64,7 @@ namespace Application_Web_ASP.NET_Core.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Compte>> GetCompteByEmail(string email)
         {
-            var compte = _context.Compte.Where(c => c.Mel.ToUpper() == email).FirstOrDefault();
+            var compte = await _context.Compte.Where(c => c.Mel.ToUpper() == email.ToUpper()).FirstOrDefaultAsync();
 
             if (compte == null)
             {
@@ -119,7 +123,6 @@ namespace Application_Web_ASP.NET_Core.Controllers
 
             return CreatedAtAction("GetCompte", new { id = compte.Id }, compte);
         }
-
 
         private bool CompteExists(int id)
         {
