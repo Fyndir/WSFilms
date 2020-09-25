@@ -6,110 +6,110 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Application_Web_ASP.NET_Core.Models.EntityFramework;
-using Application_Web_ASP.NET_Core.Models.DataManager;
 using Application_Web_ASP.NET_Core.Models.Repository;
 
 namespace Application_Web_ASP.NET_Core.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ComptesController : ControllerBase
+    public class FilmsController : ControllerBase
     {
-        readonly IDatarepository<Compte> _dataRepository;
+        readonly IDatarepository<Film> _dataRepository;
 
         /// <summary>
         /// Constructeur pour l'injection de dependance
         /// </summary>
         /// <param name="dataRepository"></param>
-        public ComptesController(IDatarepository<Compte> dataRepository)
+        public FilmsController(IDatarepository<Film> dataRepository)
         {
             _dataRepository = dataRepository;
         }
 
         /// <summary>
-        /// Retourne la liste de tout les comptes en bdd
+        /// Retourne la liste de tout les Films en bdd
         /// </summary>
         /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<Compte>>> GetCompte()
+        public async Task<ActionResult<IEnumerable<Film>>> GetFilm()
         {
-            return  await _dataRepository.GetAll();
+            return await _dataRepository.GetAll();
         }
 
         /// <summary>
-        /// retourne le compte correspondant à l'id en parametre
+        /// retourne le Film correspondant à l'id en parametre
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("ById/{id}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<Compte>> GetCompteById(int id)
-        {            
-            var compte = await _dataRepository.GetById(id);
+        public async Task<ActionResult<Film>> GetFilmById(int id)
+        {
+            var Film = await _dataRepository.GetById(id);
 
-            if (compte.Value == null)
+            if (Film.Value == null)
             {
                 return NotFound();
             }
 
-            return compte;
+            return Film;
         }
 
         /// <summary>
-        /// retorune le compte correspondant au mail en parametre
+        /// retorune le Film correspondant au mail en parametre
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
         [HttpGet("ByEmail/{email}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Compte>> GetCompteByEmail(string email)
+        public async Task<ActionResult<Film>> GetFilmByEmail(string titre)
         {
-            var compte = await _dataRepository.GetByString(email);
+            var Film = await _dataRepository.GetByString(titre);
 
-            if (compte.Value == null)
+            if (Film.Value == null)
             {
                 return NotFound();
             }
 
-            return compte;
+            return Film;
         }
 
         /// <summary>
-        /// Met à jour le compte correspondant à l'id avec les info passé dans l'object compte en parametre
+        /// Met à jour le Film correspondant à l'id avec les info passé dans l'object Film en parametre
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="compte"></param>
+        /// <param name="Film"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCompte(int id, Compte compte)
+        public async Task<IActionResult> PutFilm(int id, Film Film)
         {
-            if (id != compte.Id)
+            if (id != Film.Id)
             {
                 return BadRequest();
             }
-            var compteToUpdate = await _dataRepository.GetById(id);
-            if (compteToUpdate == null)
+            var FilmToUpdate = await _dataRepository.GetById(id);
+            if (FilmToUpdate == null)
             {
                 return NotFound();
             }
-            await _dataRepository.Update(compteToUpdate.Value, compte);
+            await _dataRepository.Update(FilmToUpdate.Value, Film);
             return NoContent();
         }
 
         /// <summary>
-        /// Insere l'objet compte en parametre dans la bdd
+        /// Insere l'objet Film en parametre dans la bdd
         /// </summary>
-        /// <param name="compte"></param>
+        /// <param name="Film"></param>
         /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<Compte>> PostCompte(Compte compte)
+        public async Task<ActionResult<Film>> PostFilm(Film Film)
         {
-            await _dataRepository.Add(compte);
+            await _dataRepository.Add(Film);
 
-            return CreatedAtAction("GetCompte", new { id = compte.Id }, compte);
+            return CreatedAtAction("GetFilm", new { id = Film.Id }, Film);
         }
+
     }
 }

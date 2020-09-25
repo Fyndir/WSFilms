@@ -36,6 +36,8 @@ namespace Application_Web_ASP.NET_Core
             services.AddDbContext<FilmsDBContext>(options => options.UseNpgsql(Configuration.GetConnectionString("FilmsDBContext")));
 
             services.AddScoped<IDatarepository<Compte>, CompteManager>();
+
+            services.AddScoped<IDatarepository<Film>, FilmManager>();
             // Configure Swagger
             services.AddSwaggerGen(c =>
             {

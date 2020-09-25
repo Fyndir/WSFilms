@@ -62,7 +62,6 @@ namespace Application_Web_ASP.NET_Core.Models.DataManager
             return await _filmsDBContext.Compte.FirstOrDefaultAsync(e => e.Id == id);
         }
 
-
         /// <summary>
         /// Update le premier compte en parametre avec les information du deuxieme
         /// </summary>

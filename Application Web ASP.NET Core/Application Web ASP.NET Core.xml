@@ -90,5 +90,53 @@
             <param name="mail"></param>
             <returns></returns>
         </member>
+        <member name="M:Application_Web_ASP.NET_Core.Models.DataManager.FilmManager.#ctor(Application_Web_ASP.NET_Core.Models.EntityFramework.FilmsDBContext)">
+            <summary>
+            Contructeur pour l'injection de dépendance
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Application_Web_ASP.NET_Core.Models.DataManager.FilmManager.Add(Application_Web_ASP.NET_Core.Models.EntityFramework.Film)">
+            <summary>
+            Ajoute un film a la bdd
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Application_Web_ASP.NET_Core.Models.DataManager.FilmManager.Delete(Application_Web_ASP.NET_Core.Models.EntityFramework.Film)">
+            <summary>
+            Supprime le film de la bdd
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Application_Web_ASP.NET_Core.Models.DataManager.FilmManager.GetAll">
+            <summary>
+            retorune tout les films de la bdd
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Application_Web_ASP.NET_Core.Models.DataManager.FilmManager.GetById(System.Int32)">
+            <summary>
+            retourne le film correspondant a l'id en parametre
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Application_Web_ASP.NET_Core.Models.DataManager.FilmManager.GetByString(System.String)">
+            <summary>
+            retourne le film correspondant au titre
+            </summary>
+            <param name="titreFilm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Application_Web_ASP.NET_Core.Models.DataManager.FilmManager.Update(Application_Web_ASP.NET_Core.Models.EntityFramework.Film,Application_Web_ASP.NET_Core.Models.EntityFramework.Film)">
+            <summary>
+            Met à jour le film passé en parametre avec les données de l'autre
+            </summary>
+            <param name="film"></param>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
