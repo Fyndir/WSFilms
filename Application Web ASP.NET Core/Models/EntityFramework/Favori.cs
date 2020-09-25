@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application_Web_ASP.NET_Core.Models.EntityFramework
 {
-    [Table("Favori")]
+    [Table("T_J_FAVORI_FAV")]
     public class Favori
     {
         [Column("CPT_ID")]        

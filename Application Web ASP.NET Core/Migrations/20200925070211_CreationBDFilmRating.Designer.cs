@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Application_Web_ASP.NET_Core.Migrations
 {
     [DbContext(typeof(FilmsDBContext))]
-    [Migration("20200924153824_migration_name")]
-    partial class migration_name
+    [Migration("20200925070211_CreationBDFilmRating")]
+    partial class CreationBDFilmRating
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -86,7 +86,10 @@ namespace Application_Web_ASP.NET_Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("compte");
+                    b.HasIndex("Mel")
+                        .IsUnique();
+
+                    b.ToTable("T_E_COMPTE_CPT");
                 });
 
             modelBuilder.Entity("Application_Web_ASP.NET_Core.Models.EntityFramework.Favori", b =>
@@ -106,11 +109,11 @@ namespace Application_Web_ASP.NET_Core.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("FilmId", "CompteId")
-                        .HasName("pk_favori");
+                        .HasName("pk_fav");
 
                     b.HasIndex("CompteId");
 
-                    b.ToTable("Favori");
+                    b.ToTable("T_J_FAVORI_FAV");
                 });
 
             modelBuilder.Entity("Application_Web_ASP.NET_Core.Models.EntityFramework.Film", b =>
@@ -151,7 +154,7 @@ namespace Application_Web_ASP.NET_Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("film");
+                    b.ToTable("T_E_FILM_FLM");
                 });
 
             modelBuilder.Entity("Application_Web_ASP.NET_Core.Models.EntityFramework.Favori", b =>
@@ -160,14 +163,14 @@ namespace Application_Web_ASP.NET_Core.Migrations
                         .WithMany("Favoris")
                         .HasForeignKey("CompteId")
                         .HasConstraintName("fk_fav_com")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Application_Web_ASP.NET_Core.Models.EntityFramework.Film", "FilmNavigation")
                         .WithMany("Favoris")
                         .HasForeignKey("FilmId")
                         .HasConstraintName("fk_fav_fil")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

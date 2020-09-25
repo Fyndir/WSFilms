@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application_Web_ASP.NET_Core.Models.EntityFramework
 {
-    [Table("film")]
+    [Table("T_E_FILM_FLM")]
     public class Film
     {
         [Key]

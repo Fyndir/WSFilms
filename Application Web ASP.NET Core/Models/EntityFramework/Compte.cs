@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application_Web_ASP.NET_Core.Models.EntityFramework
 {
-    [Table("compte")]
+    [Table("T_E_COMPTE_CPT")]
     public partial class Compte
     {
         [Key]
@@ -59,7 +59,6 @@ namespace Application_Web_ASP.NET_Core.Models.EntityFramework
 
         [Column("CPT_DATECREATION")]
         [NotNull]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime DateCreation { get; set; }
 
         [InverseProperty("CompteNavigation")]

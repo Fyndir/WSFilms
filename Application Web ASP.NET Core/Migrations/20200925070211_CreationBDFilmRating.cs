@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Application_Web_ASP.NET_Core.Migrations
 {
-    public partial class migration_name : Migration
+    public partial class CreationBDFilmRating : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +12,7 @@ namespace Application_Web_ASP.NET_Core.Migrations
                 name: "public");
 
             migrationBuilder.CreateTable(
-                name: "compte",
+                name: "T_E_COMPTE_CPT",
                 schema: "public",
                 columns: table => new
                 {
@@ -33,11 +33,11 @@ namespace Application_Web_ASP.NET_Core.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_compte", x => x.CPT_ID);
+                    table.PrimaryKey("PK_T_E_COMPTE_CPT", x => x.CPT_ID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "film",
+                name: "T_E_FILM_FLM",
                 schema: "public",
                 columns: table => new
                 {
@@ -52,11 +52,11 @@ namespace Application_Web_ASP.NET_Core.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_film", x => x.FLM_ID);
+                    table.PrimaryKey("PK_T_E_FILM_FLM", x => x.FLM_ID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Favori",
+                name: "T_J_FAVORI_FAV",
                 schema: "public",
                 columns: table => new
                 {
@@ -67,42 +67,49 @@ namespace Application_Web_ASP.NET_Core.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_favori", x => new { x.FLM_ID, x.CPT_ID });
+                    table.PrimaryKey("pk_fav", x => new { x.FLM_ID, x.CPT_ID });
                     table.ForeignKey(
                         name: "fk_fav_com",
                         column: x => x.CPT_ID,
                         principalSchema: "public",
-                        principalTable: "compte",
+                        principalTable: "T_E_COMPTE_CPT",
                         principalColumn: "CPT_ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "fk_fav_fil",
                         column: x => x.FLM_ID,
                         principalSchema: "public",
-                        principalTable: "film",
+                        principalTable: "T_E_FILM_FLM",
                         principalColumn: "FLM_ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Favori_CPT_ID",
+                name: "IX_T_E_COMPTE_CPT_CPT_MEL",
                 schema: "public",
-                table: "Favori",
+                table: "T_E_COMPTE_CPT",
+                column: "CPT_MEL",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_T_J_FAVORI_FAV_CPT_ID",
+                schema: "public",
+                table: "T_J_FAVORI_FAV",
                 column: "CPT_ID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Favori",
+                name: "T_J_FAVORI_FAV",
                 schema: "public");
 
             migrationBuilder.DropTable(
-                name: "compte",
+                name: "T_E_COMPTE_CPT",
                 schema: "public");
 
             migrationBuilder.DropTable(
-                name: "film",
+                name: "T_E_FILM_FLM",
                 schema: "public");
         }
     }
