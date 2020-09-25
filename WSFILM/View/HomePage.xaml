@@ -10,7 +10,7 @@
     DataContext="{Binding HomePage, Source={StaticResource Locator}}">
 
     <RelativePanel>
-        <Image x:Name="logoAlloCine" Source="https://www.citationbonheur.fr/wpcontent/uploads/2018/05/logo-allocine.png" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
+        <Image x:Name="logoAlloCine" Source="https://www.citationbonheur.fr/wp-content/uploads/2018/05/logo-allocine.png" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
         <TextBlock x:Name="NomAppli" Text="My AlloCine" RelativePanel.Above="logoAlloCine" RelativePanel.AlignHorizontalCenterWithPanel="True" FontWeight="Bold" FontSize="24" Foreground="Orange"/>
     </RelativePanel>
 </Page>
