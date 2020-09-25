@@ -1,5 +1,7 @@
 using Application_Web_ASP.NET_Core.Controllers;
+using Application_Web_ASP.NET_Core.Models.DataManager;
 using Application_Web_ASP.NET_Core.Models.EntityFramework;
+using Application_Web_ASP.NET_Core.Models.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -15,15 +17,16 @@ namespace UnitTestProject1
     public class UnitTest1
     {
         private FilmsDBContext _context;
-
         private ComptesController _controller;
+        private IDatarepository<Compte> _dataRepository;
 
         [TestInitialize]
         public void TestInit()
         {
             var builder = new DbContextOptionsBuilder<FilmsDBContext>().UseNpgsql("Server=localhost;port=5432;Database=FilmsDBTP3;uid=postgres;password=postgres;");
             _context = new FilmsDBContext(builder.Options);
-            _controller = new ComptesController(_context);
+            _dataRepository = new CompteManager(_context);
+            _controller = new ComptesController(_dataRepository);
         }
 
         [TestMethod]
@@ -147,8 +150,8 @@ namespace UnitTestProject1
         [TestMethod]
         public void GetCompteById_NoneExistingIdPassedReturn404()
         {
-            var result = _controller.GetCompteById(int.MaxValue).Result;
-            Assert.IsInstanceOfType(result.Result, typeof(NotFoundResult), "Pas de 404");
+            var result = _controller.GetCompteById(int.MaxValue);
+            Assert.IsInstanceOfType(result.Result.Result, typeof(NotFoundResult), "Pas de 404");
         }
 
         [TestMethod]

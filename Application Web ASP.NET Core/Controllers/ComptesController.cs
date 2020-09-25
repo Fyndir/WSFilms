@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Application_Web_ASP.NET_Core.Models.EntityFramework;
+using Application_Web_ASP.NET_Core.Models.DataManager;
+using Application_Web_ASP.NET_Core.Models.Repository;
 
 namespace Application_Web_ASP.NET_Core.Controllers
 {
@@ -13,15 +15,15 @@ namespace Application_Web_ASP.NET_Core.Controllers
     [ApiController]
     public class ComptesController : ControllerBase
     {
-        private readonly FilmsDBContext _context;
+        readonly IDatarepository<Compte> _dataRepository;
 
         /// <summary>
         /// Constructeur pour l'injection de dependance
         /// </summary>
         /// <param name="context"></param>
-        public ComptesController(FilmsDBContext context)
+        public ComptesController(IDatarepository<Compte> dataRepository)
         {
-            _context = context;
+            _dataRepository = dataRepository;
         }
 
         /// <summary>
@@ -32,7 +34,7 @@ namespace Application_Web_ASP.NET_Core.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<Compte>>> GetCompte()
         {
-            return await _context.Compte.ToListAsync();
+            return  await _dataRepository.GetAll();
         }
 
         /// <summary>
@@ -45,9 +47,9 @@ namespace Application_Web_ASP.NET_Core.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<Compte>> GetCompteById(int id)
         {            
-            var compte = await _context.Compte.Include(c => c.Favoris).Where(c=> c.Id==id).FirstOrDefaultAsync();
+            var compte = await _dataRepository.GetById(id);
 
-            if (compte == null)
+            if (compte.Value == null)
             {
                 return NotFound();
             }
@@ -64,9 +66,9 @@ namespace Application_Web_ASP.NET_Core.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Compte>> GetCompteByEmail(string email)
         {
-            var compte = await _context.Compte.Where(c => c.Mel.ToUpper() == email.ToUpper()).FirstOrDefaultAsync();
+            var compte = await _dataRepository.GetByString(email);
 
-            if (compte == null)
+            if (compte.Value == null)
             {
                 return NotFound();
             }
@@ -87,25 +89,12 @@ namespace Application_Web_ASP.NET_Core.Controllers
             {
                 return BadRequest();
             }
-
-            _context.Entry(compte).State = EntityState.Modified;
-
-            try
+            var compteToUpdate = await _dataRepository.GetById(id);
+            if (compteToUpdate == null)
             {
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CompteExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
+            await _dataRepository.Update(compteToUpdate.Value, compte);
             return NoContent();
         }
 
@@ -118,15 +107,9 @@ namespace Application_Web_ASP.NET_Core.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<Compte>> PostCompte(Compte compte)
         {
-            _context.Compte.Add(compte);
-            await _context.SaveChangesAsync();
+            await _dataRepository.Add(compte);
 
             return CreatedAtAction("GetCompte", new { id = compte.Id }, compte);
-        }
-
-        private bool CompteExists(int id)
-        {
-            return _context.Compte.Any(e => e.Id == id);
         }
     }
 }

@@ -4,7 +4,7 @@
         <name>Application Web ASP.NET Core</name>
     </assembly>
     <members>
-        <member name="M:Application_Web_ASP.NET_Core.Controllers.ComptesController.#ctor(Application_Web_ASP.NET_Core.Models.EntityFramework.FilmsDBContext)">
+        <member name="M:Application_Web_ASP.NET_Core.Controllers.ComptesController.#ctor(Application_Web_ASP.NET_Core.Models.Repository.IDatarepository{Application_Web_ASP.NET_Core.Models.EntityFramework.Compte})">
             <summary>
             Constructeur pour l'injection de dependance
             </summary>
@@ -43,6 +43,51 @@
             Insere l'objet compte en parametre dans la bdd
             </summary>
             <param name="compte"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Application_Web_ASP.NET_Core.Models.DataManager.CompteManager.#ctor(Application_Web_ASP.NET_Core.Models.EntityFramework.FilmsDBContext)">
+            <summary>
+            Contructeur pour l'injection de dépendance
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Application_Web_ASP.NET_Core.Models.DataManager.CompteManager.Add(Application_Web_ASP.NET_Core.Models.EntityFramework.Compte)">
+            <summary>
+            Ajoute le compte dans la bdd
+            </summary>
+            <param name="entity"></param>
+        </member>
+        <member name="M:Application_Web_ASP.NET_Core.Models.DataManager.CompteManager.Delete(Application_Web_ASP.NET_Core.Models.EntityFramework.Compte)">
+            <summary>
+            Supprime de la bdd le compte en parametre
+            </summary>
+            <param name="compte"></param>
+        </member>
+        <member name="M:Application_Web_ASP.NET_Core.Models.DataManager.CompteManager.GetAll">
+            <summary>
+            retourne tous les comptes present dans la bdd
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Application_Web_ASP.NET_Core.Models.DataManager.CompteManager.GetById(System.Int32)">
+            <summary>
+            Retourne le compte lié a l'id en parametre
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Application_Web_ASP.NET_Core.Models.DataManager.CompteManager.Update(Application_Web_ASP.NET_Core.Models.EntityFramework.Compte,Application_Web_ASP.NET_Core.Models.EntityFramework.Compte)">
+            <summary>
+            Update le premier compte en parametre avec les information du deuxieme
+            </summary>
+            <param name="compte"></param>
+            <param name="entity"></param>
+        </member>
+        <member name="M:Application_Web_ASP.NET_Core.Models.DataManager.CompteManager.GetByString(System.String)">
+            <summary>
+            Retourne le compte lié au mail en paramatre
+            </summary>
+            <param name="mail"></param>
             <returns></returns>
         </member>
     </members>

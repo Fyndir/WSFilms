@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Application_Web_ASP.NET_Core.Models.DataManager;
 using Application_Web_ASP.NET_Core.Models.EntityFramework;
+using Application_Web_ASP.NET_Core.Models.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +34,8 @@ namespace Application_Web_ASP.NET_Core
             services.AddControllers();
 
             services.AddDbContext<FilmsDBContext>(options => options.UseNpgsql(Configuration.GetConnectionString("FilmsDBContext")));
+
+            services.AddScoped<IDatarepository<Compte>, CompteManager>();
             // Configure Swagger
             services.AddSwaggerGen(c =>
             {
