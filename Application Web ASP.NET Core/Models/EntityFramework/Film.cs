@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Application_Web_ASP.NET_Core.Models.EntityFramework
@@ -43,6 +44,12 @@ namespace Application_Web_ASP.NET_Core.Models.EntityFramework
         public string UrlPhoto { get; set; }
 
         [InverseProperty("FilmNavigation")]
+        [JsonIgnore]
         public virtual ICollection<Favori> Favoris { get; set; }
+
+        public Film()
+        {
+            Favoris = new HashSet<Favori>();
+        }
     }
 }

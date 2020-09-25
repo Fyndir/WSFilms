@@ -27,10 +27,12 @@ namespace Application_Web_ASP.NET_Core.Models.EntityFramework
         public string Prenom { get; set; }
 
         [Column("CPT_TELPORTABLE", TypeName = "char(10)")]
+        [RegularExpression(@"^0[0-9]{9}$", ErrorMessage = "pas un vrai numéro de telephone")]
         public string TelPortable { get; set; }
 
         [Column("CPT_MEL")]
         [MaxLength(100)]
+        [EmailAddress]
         public string Mel { get; set; }
 
         [Column("CPT_PWD")]
@@ -63,5 +65,10 @@ namespace Application_Web_ASP.NET_Core.Models.EntityFramework
 
         [InverseProperty("CompteNavigation")]
         public virtual ICollection<Favori> Favoris { get; set; }
+
+        public Compte()
+        {
+            Favoris = new HashSet<Favori>();
+        }
     }
 }

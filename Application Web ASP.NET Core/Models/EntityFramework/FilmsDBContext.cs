@@ -47,8 +47,7 @@ namespace Application_Web_ASP.NET_Core.Models.EntityFramework
                       .OnDelete(DeleteBehavior.Restrict)
                       .HasConstraintName("fk_fav_com");
 
-                entity.HasKey(e => new { e.FilmId, e.CompteId })
-                   .HasName("pk_fav");
+                entity.HasKey(e => new { e.FilmId, e.CompteId }).HasName("pk_fav");
             });
 
             modelBuilder.Entity<Compte>(entity =>
