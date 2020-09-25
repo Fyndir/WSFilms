@@ -59,11 +59,11 @@ namespace Application_Web_ASP.NET_Core.Controllers
         /// <summary>
         /// retorune le Film correspondant au mail en parametre
         /// </summary>
-        /// <param name="email"></param>
+        /// <param name="titre"></param>
         /// <returns></returns>
         [HttpGet("ByEmail/{email}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Film>> GetFilmByEmail(string titre)
+        public async Task<ActionResult<Film>> GetFilmByTitre(string titre)
         {
             var Film = await _dataRepository.GetByString(titre);
 

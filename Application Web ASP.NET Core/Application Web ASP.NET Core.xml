@@ -8,7 +8,7 @@
             <summary>
             Constructeur pour l'injection de dependance
             </summary>
-            <param name="context"></param>
+            <param name="dataRepository"></param>
         </member>
         <member name="M:Application_Web_ASP.NET_Core.Controllers.ComptesController.GetCompte">
             <summary>
@@ -43,6 +43,47 @@
             Insere l'objet compte en parametre dans la bdd
             </summary>
             <param name="compte"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Application_Web_ASP.NET_Core.Controllers.FilmsController.#ctor(Application_Web_ASP.NET_Core.Models.Repository.IDatarepository{Application_Web_ASP.NET_Core.Models.EntityFramework.Film})">
+            <summary>
+            Constructeur pour l'injection de dependance
+            </summary>
+            <param name="dataRepository"></param>
+        </member>
+        <member name="M:Application_Web_ASP.NET_Core.Controllers.FilmsController.GetFilm">
+            <summary>
+            Retourne la liste de tout les Films en bdd
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Application_Web_ASP.NET_Core.Controllers.FilmsController.GetFilmById(System.Int32)">
+            <summary>
+            retourne le Film correspondant à l'id en parametre
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Application_Web_ASP.NET_Core.Controllers.FilmsController.GetFilmByTitre(System.String)">
+            <summary>
+            retorune le Film correspondant au mail en parametre
+            </summary>
+            <param name="titre"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Application_Web_ASP.NET_Core.Controllers.FilmsController.PutFilm(System.Int32,Application_Web_ASP.NET_Core.Models.EntityFramework.Film)">
+            <summary>
+            Met à jour le Film correspondant à l'id avec les info passé dans l'object Film en parametre
+            </summary>
+            <param name="id"></param>
+            <param name="Film"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Application_Web_ASP.NET_Core.Controllers.FilmsController.PostFilm(Application_Web_ASP.NET_Core.Models.EntityFramework.Film)">
+            <summary>
+            Insere l'objet Film en parametre dans la bdd
+            </summary>
+            <param name="Film"></param>
             <returns></returns>
         </member>
         <member name="M:Application_Web_ASP.NET_Core.Models.DataManager.CompteManager.#ctor(Application_Web_ASP.NET_Core.Models.EntityFramework.FilmsDBContext)">

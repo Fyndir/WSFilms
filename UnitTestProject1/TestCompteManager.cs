@@ -14,7 +14,7 @@ using Xunit.Sdk;
 namespace UnitTestProject1
 {
     [TestClass]
-    public class UnitTest1
+    public class TestCompteManager
     {
         private FilmsDBContext _context;
         private ComptesController _controller;
