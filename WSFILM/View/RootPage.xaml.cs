@@ -29,5 +29,10 @@ namespace WSFILM
             this.MySplitView.Content = frame;
             (MySplitView.Content as Frame).Navigate(typeof(HomePage));
         }
+
+        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
+        {
+                MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;            
+        }
     }
 }
