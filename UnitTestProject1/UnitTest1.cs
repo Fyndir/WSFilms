@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Xunit.Sdk;
 
 namespace UnitTestProject1
@@ -60,5 +62,120 @@ namespace UnitTestProject1
             Assert.AreEqual(compteRecupere, compteAtester, "Comptes pas identiques");
 
         }
+
+        [TestMethod]
+        public void PostCompte_ModelWithBadPhone_CreationNOK()
+        {
+            // Arrange
+            Random rnd = new Random();
+            int chiffre = rnd.Next(1, 1000000000);
+            // Le mail doit être unique donc 2 possibilités :
+            // 1. on s'arrange pour que le mail soit unique en concaténant un random ou un timestamp
+            // 2. On supprime le compte après l'avoir créé. Dans ce cas, nous avons besoin d'appeler la méthode DELETE du WS => la décommenter
+            Compte compteAtester = new Compte()
+            {
+                Nom = "MACHIN",
+                Prenom = "Luc",
+                TelPortable = "06",
+                Mel = "machin" + chiffre + "@gmail.com",
+                Pwd = "Toto1234!",
+                Rue = "Chemin de Bellevue",
+                CodePostal = "74940",
+                Ville = "Annecy-le-Vieux",
+                Pays = "France",
+                Latitude = null,
+                Longitude = null
+            };
+            string PhoneRegex = @"^0[0-9]{9}$";
+            Regex regex = new Regex(PhoneRegex);
+            if (!regex.IsMatch(compteAtester.TelPortable))
+            {
+                _controller.ModelState.AddModelError("TelPortable", "Le téléphone portable doit contenir 10 chiffres"); //On met le même message que dans la classe Compte.
+            }
+            Assert.IsTrue(!_controller.ModelState.IsValid);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(System.AggregateException))]
+        public void PostCompte_ModelWithMailNonUnique_CreationNOK()
+        {
+            // Arrange
+            Random rnd = new Random();
+            int chiffre = rnd.Next(1, 1000000000);
+
+            Random rand = new Random();
+            int toSkip = rand.Next(0, _context.Compte.Count());
+
+            string mail = _context.Compte.Skip(toSkip).Take(1).First().Mel;
+            // Le mail doit être unique donc 2 possibilités :
+            // 1. on s'arrange pour que le mail soit unique en concaténant un random ou un timestamp
+            // 2. On supprime le compte après l'avoir créé. Dans ce cas, nous avons besoin d'appeler la méthode DELETE du WS => la décommenter
+            Compte compteAtester = new Compte()
+            {
+                Nom = "MACHIN",
+                Prenom = "Luc",
+                TelPortable = "06",
+                Mel = mail,
+                Pwd = "Toto1234!",
+                Rue = "Chemin de Bellevue",
+                CodePostal = "74940",
+                Ville = "Annecy-le-Vieux",
+                Pays = "France",
+                Latitude = null,
+                Longitude = null
+            };
+
+            var test = _controller.PostCompte(compteAtester).Result;
+
+        }
+
+        [TestMethod]
+        public void GetCompte_GetGoodTypeObject()
+        {
+            var comptes = _controller.GetCompte().Result;
+
+            Assert.IsInstanceOfType(comptes.Value, typeof(IEnumerable<Compte>));
+        }
+
+        [TestMethod]
+        public void GetCompteById_ExistingIdPassedReturnOkObject()
+        {
+            var result = _controller.GetCompteById(10).Result;
+            Assert.IsInstanceOfType(result.Value, typeof(Compte), "Pas du bon type");
+        }
+
+        [TestMethod]
+        public void GetCompteById_NoneExistingIdPassedReturn404()
+        {
+            var result = _controller.GetCompteById(int.MaxValue).Result;
+            Assert.IsInstanceOfType(result.Result, typeof(NotFoundResult), "Pas de 404");
+        }
+
+        [TestMethod]
+        public void GetCompteByMail_ExistingIdPassedReturnOkObject()
+        {
+
+            Random rnd = new Random();
+            int chiffre = rnd.Next(1, 1000000000);
+
+            Random rand = new Random();
+            int toSkip = rand.Next(0, _context.Compte.Count());
+            string mail = _context.Compte.Skip(toSkip).Take(1).First().Mel;
+            var result = _controller.GetCompteByEmail(mail).Result;
+            Assert.IsInstanceOfType(result.Value, typeof(Compte), "Pas du bon type");
+        }
+
+        [TestMethod]
+        public void GetCompteByMail_NoneExistingIdPassedReturn404()
+        {
+            Random rnd = new Random();
+            int chiffre = rnd.Next(1, 1000000000);
+            var result = _controller.GetCompteByEmail("machin" + chiffre + "@gmail.com").Result;
+            Assert.IsInstanceOfType(result.Result, typeof(NotFoundResult), "Pas de 404");
+        }
+
+
+
     }
 }
+
