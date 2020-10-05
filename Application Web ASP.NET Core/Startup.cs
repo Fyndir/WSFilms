@@ -56,7 +56,7 @@ namespace Application_Web_ASP.NET_Core
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+           // app.UseHttpsRedirection();
 
             app.UseRouting();
 
