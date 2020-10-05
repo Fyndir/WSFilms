@@ -15,6 +15,7 @@ namespace WSFILM.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<VMHomePage>();
             SimpleIoc.Default.Register<RechercheCompteVM>();
+            SimpleIoc.Default.Register<AjouterCompteVM>();
         }
 
         /// <summary>
@@ -22,5 +23,6 @@ namespace WSFILM.ViewModel
         /// </summary>
         public VMHomePage HomePage => ServiceLocator.Current.GetInstance<VMHomePage>();
         public RechercheCompteVM RechercheCompte => ServiceLocator.Current.GetInstance<RechercheCompteVM>();
+        public AjouterCompteVM AjouterCompte => ServiceLocator.Current.GetInstance<AjouterCompteVM>();
     }
 }

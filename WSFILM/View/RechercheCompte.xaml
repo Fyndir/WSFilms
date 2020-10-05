@@ -18,22 +18,22 @@
 
 
         <TextBlock Text="Nom"  Name="Txt3" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="BtSearch"  ></TextBlock>
-        <TextBox Text="{Binding SearchCompte.Nom}" RelativePanel.Below="Txt3" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="TbNom" Width="240"></TextBox>
+        <TextBox Text="{Binding SearchCompte.Nom,Mode=TwoWay}" RelativePanel.Below="Txt3" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="TbNom" Width="240"></TextBox>
 
         <TextBlock Text="Prénom"  Name="Txt4" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TbNom"  ></TextBlock>
-        <TextBox Text="{Binding SearchCompte.Prenom}" RelativePanel.Below="Txt4" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="Tbprenom" Width="240"></TextBox>
+        <TextBox Text="{Binding SearchCompte.Prenom,Mode=TwoWay}" RelativePanel.Below="Txt4" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="Tbprenom" Width="240"></TextBox>
 
         <TextBlock Text="Portable"  Name="Txt5" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="Tbprenom"  ></TextBlock>
-        <TextBox Text="{Binding SearchCompte.TelPortable}" RelativePanel.Below="Txt5" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="TbPortable" Width="240"></TextBox>
+        <TextBox Text="{Binding SearchCompte.TelPortable,Mode=TwoWay}" RelativePanel.Below="Txt5" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="TbPortable" Width="240"></TextBox>
 
         <TextBlock Text="Mail"  Name="Txt6" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TbPortable"  ></TextBlock>
-        <TextBox Text="{Binding SearchCompte.Mel}" RelativePanel.Below="Txt6" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="TbMail" Width="240"></TextBox>
+        <TextBox Text="{Binding SearchCompte.Mel,Mode=TwoWay}" RelativePanel.Below="Txt6" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="TbMail" Width="240"></TextBox>
 
         <TextBlock Text="Adresse"  Name="Txt7" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TbMail"  ></TextBlock>
-        <TextBox Text="{Binding SearchCompte.Rue}" RelativePanel.Below="Txt7" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="TbRue" Width="240" Margin="5"></TextBox>
-        <TextBox Text="{Binding SearchCompte.CodePostal}" RelativePanel.Below="TbRue" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="TbCP" Width="240" Margin="5"></TextBox>
-        <TextBox Text="{Binding SearchCompte.Ville}" RelativePanel.Below="TbCP" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="TbVille" Width="240" Margin="5"></TextBox>
-        <TextBox Text="{Binding SearchCompte.Pays}" RelativePanel.Below="TbVille" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="TbPays" Width="240" Margin="5"></TextBox>
+        <TextBox Text="{Binding SearchCompte.Rue,Mode=TwoWay}" RelativePanel.Below="Txt7" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="TbRue" Width="240" Margin="5"></TextBox>
+        <TextBox Text="{Binding SearchCompte.CodePostal,Mode=TwoWay}" RelativePanel.Below="TbRue" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="TbCP" Width="240" Margin="5"></TextBox>
+        <TextBox Text="{Binding SearchCompte.Ville,Mode=TwoWay}" RelativePanel.Below="TbCP" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="TbVille" Width="240" Margin="5"></TextBox>
+        <TextBox Text="{Binding SearchCompte.Pays,Mode=TwoWay}" RelativePanel.Below="TbVille" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="TbPays" Width="240" Margin="5"></TextBox>
 
         <CommandBar x:Name="AppCommandBar" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" >
             <CommandBar.PrimaryCommands>

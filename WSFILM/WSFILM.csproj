@@ -123,9 +123,13 @@
     <Compile Include="Model\Favori.cs" />
     <Compile Include="Model\Film.cs" />
     <Compile Include="Services\WSService.cs" />
+    <Compile Include="ViewModel\AjouterCompteVM.cs" />
     <Compile Include="ViewModel\RechercheCompteVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\VMHomePage.cs" />
+    <Compile Include="View\AjouterCompte.xaml.cs">
+      <DependentUpon>AjouterCompte.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -157,6 +161,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\AjouterCompte.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

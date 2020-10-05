@@ -26,5 +26,19 @@ namespace WSFILM.Services
 
             return compte;
         }
+
+        public async Task ModifCompte(Compte compte)
+        {
+            client = new HttpClient();
+            string url = $"http://localhost:5000/api/Comptes/{compte.Id}";
+            HttpResponseMessage response = await client.PutAsJsonAsync(url,compte);           
+        }
+
+        internal async Task AddCompte(Compte addedCompte)
+        {
+            client = new HttpClient();
+            string url = $"http://localhost:5000/api/Comptes/";
+            HttpResponseMessage response = await client.PostAsJsonAsync(url, addedCompte);
+        }
     }
 }

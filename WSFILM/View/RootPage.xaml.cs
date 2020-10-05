@@ -37,7 +37,7 @@ namespace WSFILM
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-
+            (MySplitView.Content as Frame).Navigate(typeof(HomePage));
         }
 
         private void Account_Click(object sender, RoutedEventArgs e)
