@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Popups;
 using WSFILM.Model;
 using WSFILM.Services;
 
@@ -39,7 +40,19 @@ namespace WSFILM.ViewModel
 
         private async void AddCompte()
         {
-           await _wsService.AddCompte(this.AddedCompte);
+            try
+            {
+                await _wsService.AddCompte(this.AddedCompte);
+                MessageDialog popup = new MessageDialog($"L'ajout du compte {AddedCompte.Nom} { AddedCompte.Prenom} a réussi");
+                await popup.ShowAsync();
+                this.AddedCompte = new Compte();
+            }
+            catch (Exception e)
+            {
+                MessageDialog popup = new MessageDialog(e.Message);
+                await popup.ShowAsync();
+            }
+
         }
     }
 }

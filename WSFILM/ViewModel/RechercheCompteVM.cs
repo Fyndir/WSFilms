@@ -65,6 +65,8 @@ namespace WSFILM.ViewModel
             try
             {
                 await _wsService.ModifCompte(this.SearchCompte);
+                MessageDialog popup = new MessageDialog($"Modification du compte {SearchCompte.Nom} {SearchCompte.Prenom} réussi");
+                await popup.ShowAsync();
             }
             catch (Exception e)
             {

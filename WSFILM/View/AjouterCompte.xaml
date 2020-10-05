@@ -24,8 +24,11 @@
             <TextBlock Text="Mail"  Name="Txt6" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TbPortable"  ></TextBlock>
             <TextBox Text="{Binding AddedCompte.Mel,Mode=TwoWay}" RelativePanel.Below="Txt6" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="TbMail" Width="240"></TextBox>
 
-            <TextBlock Text="Adresse"  Name="Txt7" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TbMail"  ></TextBlock>
-            <TextBox Text="{Binding AddedCompte.Rue,Mode=TwoWay}" RelativePanel.Below="Txt7" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="TbRue" Width="240" Margin="5"></TextBox>
+            <TextBlock Text="Passwod"  Name="Txt7" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TbMail"  ></TextBlock>
+            <PasswordBox Password="{Binding AddedCompte.Pwd,Mode=TwoWay}" RelativePanel.Below="Txt7" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="TbPassword" Width="240"></PasswordBox>
+
+            <TextBlock Text="Adresse (Rue,CP,Ville,Pays)"  Name="Txt8" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="TbPassword"  ></TextBlock>
+            <TextBox Text="{Binding AddedCompte.Rue,Mode=TwoWay}" RelativePanel.Below="Txt8" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="TbRue" Width="240" Margin="5"></TextBox>
             <TextBox Text="{Binding AddedCompte.CodePostal,Mode=TwoWay}" RelativePanel.Below="TbRue" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="TbCP" Width="240" Margin="5"></TextBox>
             <TextBox Text="{Binding AddedCompte.Ville,Mode=TwoWay}" RelativePanel.Below="TbCP" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="TbVille" Width="240" Margin="5"></TextBox>
             <TextBox Text="{Binding AddedCompte.Pays,Mode=TwoWay}" RelativePanel.Below="TbVille" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="TbPays" Width="240" Margin="5"></TextBox>
